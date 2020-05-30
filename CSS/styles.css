@@ -1,0 +1,158 @@
+:root {
+    --blue: #294fe6;
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+#container {
+    width: 800px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#container>.card {
+    margin: auto;
+    margin-top: 35px;
+}
+
+p {
+    margin-top: 10px;
+}
+
+@media all and (max-width:500px) {
+    #container {
+        width: 300px;
+    }
+}
+
+@media all and (max-width:800px) {
+    #container {
+        width: 500px;
+    }
+}
+
+img {
+    max-width: 640px;
+}
+
+iframe {
+    width: 640px;
+    height: 360px;
+}
+
+.round {
+    border-radius: 10px;
+}
+
+
+/* The Modal (background) */
+
+.custom_modal {
+    display: none;
+    /* Hidden by default */
+    margin: auto;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content/Box */
+
+.custom_modal-content {
+    /* display: flex; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+}
+
+#date {
+    border-radius: 5px;
+    border: 2px solid gray;
+    margin: 5px
+}
+
+#date:hover {
+    border: 2px var(--blue) solid;
+}
+
+#go,
+#today_btn {
+    color: #fff;
+    border: 2px grey solid;
+    border-radius: 5px;
+    background-color: grey;
+}
+
+#go:hover,
+#today_btn:hover {
+    color: #fff;
+    border: 2px var(--blue) solid;
+    background: #294fe6;
+}
+
+#stand,
+#HD {
+    margin: 5px;
+}
+
+.btn-group {
+    margin-left: 1.5rem;
+}

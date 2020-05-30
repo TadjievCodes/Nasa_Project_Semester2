@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <script src="day.js"></script>
+    <title>Nasa API APOD</title>
+</head>
+
+<body>
+
+    <div id="modal_custom"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">APOD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="today_btn">Today's Astronomy Picture</button>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label for="stand" class="btn btn-secondary">
+                    <input type="radio" autocomplete="off"> SD
+                    </label>
+                        <label for="HD" class="btn btn-secondary">
+                    <input type="radio" autocomplete="off" checked> HD
+                    </label>
+                    </div>
+                </li>
+            </ul>
+
+            <select name="arrayList" id="displayFilter" onload="startUp();">
+                <option value="PleaseSelect">Please Select...</option>    
+            </select>
+            <br><br>
+            <button onclick="startUp();"> 
+                click here 
+            </button>
+
+
+            <form class="form-inline my-2 my-lg-0">
+                <label for="from" class="btn btn-secondary">From Date:</label>
+                <input type="date" id="date1" min="1995-06-16">
+
+                <label for="toDate" class="btn btn-secondary">To Date:</label>
+                <input type="date" id="date" min="1995-06-16">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="go">Get Data</button>
+            </form>
+
+        </div>
+    </nav>
+
+
+    <div id="container"></div>
+
+
+    <div id="speed-container" class="range-field">
+        <label for="speed-slider">Travel Speed</label>
+        <input value="20" type="range" id="speed-slider" step="1" min="0" max="100" />
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="starfield.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
