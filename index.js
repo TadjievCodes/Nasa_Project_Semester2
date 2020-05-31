@@ -40,18 +40,21 @@ function today_date() {
 console.log(min_date);
 
 
-// Returns randomly 10 items or datas from the JSON External file 
-
+// Returns randomly 5 items or datas from the JSON External file 
+// Jus trying to paly with it
 getData(5).catch(err => {
     console.log(err)
 })
 
 
 
-
+// Event listner on click to get calendar's value the date
+// And some validations so it doesn't go out of tge min_date range and new Date() which is today's range
+// The reason I set min_date to "1995-06-16" as that's from when the images and data for APOD API is available
 date_btn.addEventListener('click', function(event) {
     let date_val = calandar.value;
 
+    // preventing default behaviour 
     event.preventDefault()
     if (date_val < min_date || date_val > new Date()) {
         console.log("out of range!!")
@@ -63,6 +66,8 @@ date_btn.addEventListener('click', function(event) {
 
 })
 
+
+// Click event for our today's date button which shows today's data
 today_btn.addEventListener('click', function(event) {
     // let today = new Date();
     // let today_obj = new Date();
@@ -81,7 +86,11 @@ today_btn.addEventListener('click', function(event) {
     event.preventDefault()
 
     getData(today_date())
+
+    // Removes the button with this one line after each execution if needed
+    //event.target.remove();
 })
+
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
