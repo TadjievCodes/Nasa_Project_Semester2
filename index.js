@@ -12,11 +12,13 @@ const today_btn = document.getElementById('today_btn');
 console.log(document.getElementsByName('res'))
 const res_btns = document.getElementsByName('res')
 
+// Our Global Array to store returned data from Asynchronous calls made
 var nasaDays = [];
 
-
+// Setting the max date as today's date in our Calendar
 calandar.setAttribute('max', today_date());
 
+// Function to get the current day in our calendar
 function today_date() {
     let today = new Date(); // deepscan-disable-line
     let today_obj = new Date();
@@ -81,6 +83,9 @@ today_btn.addEventListener('click', function(event) {
     getData(today_date())
 })
 
+// Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
+// The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
+
 async function getData(arg) {
 
     var api_link;
@@ -98,16 +103,33 @@ async function getData(arg) {
     var data = await response.json();
     console.log(data);
 
+
+    /*
+    if (response.text == "undefined") {
+        response.text = "Unknown";
+    }
+
+    for (var i = 0; i < nasaDays.length; i++) {
+        if (nasaDays[i].data.copyright.value == "undefined") {
+            nasaDays[i].data.copyright.value = "Unknown";
+        }
+
+    }
+*/
+
+    //  isArray() method checks whether the passed variable is an Array object. It returns a true boolean value if the variable is an array and false if it is not.
     if (!(Array.isArray(data))) {
         data = [data];
     }
 
+    // Iterating through it and pushing it into our array nasaDays which is according to the Class Constructor that's why new Day keyword is used
     data.forEach(function(day) {
         //  createView(day)
         nasaDays.push(new Day(day));
     })
     console.log(nasaDays);
 
+    // Again iterating and creating the display for the selected days with createView method we have in our constructor
     nasaDays.forEach(function(day) {
         day.createView(container, res_btns)
     })
@@ -115,28 +137,15 @@ async function getData(arg) {
 }
 
 
-/*
-function arrayFilling() {
-
-    for (var i = 0; i < nasaDays.length; i++) {
-        // check for match
 
 
-        nasaDays[i].title.push();
-
-
-
-    } // for loop end 
-
-} // function end
-*/
 
 var select = document.getElementById("displayFilter");
 
 nasaDays = [];
 
 
-// Main function 
+// Main function to fill the Select Dropdown List with our nasaDays array values accordingly
 function startUp() {
 
     for (var i = 0; i < nasaDays.length; i++) {
@@ -146,19 +155,45 @@ function startUp() {
         el.value = optn;
         select.appendChild(el);
     }
-    //down.innerHTML = "Elements Added";
-
-    /*
-        const departmentSelection = document.getElementById('displayFilter');
-
-        if (departmentSelection.value === optn.value) {
-
-
-        }
-    */
-
 
 }
+//down.innerHTML = "Elements Added";
+
+/*
+    const departmentSelection = document.getElementById('displayFilter');
+
+    if (departmentSelection.value === optn.value) {
+
+
+    }
+*/
 
 // Kind of on load event listener function
 // window.addEventListener("DOMContentLoaded", function name)
+
+
+// Jquery method doesn;t seem to work
+
+/*
+$(document).ready(function() {
+
+    $('.firstdate input').on('change', function() {
+
+        var datearray = $('.firstdate input').val().split("-");
+
+        var montharray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        var year = "20" + datearray[2];
+
+        var month = montharray.indexOf(datearray[1]) + 1;
+
+        var day = datearray[0];
+
+        var minDate = (year + "-" + month + "-" + day);
+
+        $('.seconddate input').attr('min', minDate);
+
+    });
+
+});
+*/
