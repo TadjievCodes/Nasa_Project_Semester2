@@ -2,9 +2,9 @@
 
 const container = document.getElementById('container');
 const date_btn = document.getElementById('go');
-const calandar = document.getElementById('date');
+const calendar = document.getElementById('date');
 // just added  date1 for the first calendar to start from
-const calandar1 = document.getElementById('date1');
+const calendar1 = document.getElementById('date1');
 
 const min_date = new Date('1995, 06, 16');
 const today_btn = document.getElementById('today_btn');
@@ -16,7 +16,9 @@ const res_btns = document.getElementsByName('res')
 var nasaDays = [];
 
 // Setting the max date as today's date in our Calendar
-calandar.setAttribute('max', today_date());
+calendar.setAttribute('max', today_date());
+calendar1.setAttribute('max', today_date());
+
 
 // Function to get the current day in our calendar
 function today_date() {
@@ -41,7 +43,7 @@ console.log(min_date);
 
 
 // Returns randomly 5 items or datas from the JSON External file 
-// Jus trying to paly with it
+// Just trying to play with it
 getData(5).catch(err => {
     console.log(err)
 })
@@ -51,8 +53,13 @@ getData(5).catch(err => {
 // Event listner on click to get calendar's value the date
 // And some validations so it doesn't go out of tge min_date range and new Date() which is today's range
 // The reason I set min_date to "1995-06-16" as that's from when the images and data for APOD API is available
+
+// Second on the right date picker
 date_btn.addEventListener('click', function(event) {
-    let date_val = calandar.value;
+    let date_val = calendar.value;
+
+    //And Do I really need to convert it here to Date Object as it throws errors when I do it that way?
+    let actual_date = new Date(date_val); // convert string to Date Object
 
     // preventing default behaviour 
     event.preventDefault()
@@ -65,6 +72,54 @@ date_btn.addEventListener('click', function(event) {
     }
 
 })
+
+// First Date Picker
+
+date_btn.addEventListener('click', function(event) {
+    let date_val = calendar1.value;
+    let actual_date = new Date(date_val); // convert string to Date Object
+
+    // preventing default behaviour 
+    event.preventDefault()
+    if (date_val < min_date || date_val > new Date()) {
+        console.log("out of range!!")
+    } else {
+        getData(date_val).catch(err => {
+            console.log(err)
+        });
+    }
+
+})
+
+// Now how to set them together so they produce the value dates between the range and I shouldn't allow users to select more than the 1-month worth of data?
+
+// Why my jquery gives error when trying to be dependent on each other?
+/*
+
+$(document).ready(function() {
+    $("#date").datepicker({
+        format: 'dd/mm/yyyy',
+        autoclose: 1,
+        //startDate: new Date(),
+        todayHighlight: false,
+        //endDate: new Date()
+    }).on('changeDate', function(selected) {
+        var minDate = new Date(selected.date.valueOf());
+        $('#txtToDate').datepicker('setStartDate', minDate);
+        $("#txtToDate").val($("#txtFromDate").val());
+        $(this).datepicker('hide');
+    });
+
+    $("#date1").datepicker({
+        format: 'dd/mm/yyyy',
+        todayHighlight: true,
+        //endDate: new Date()
+    }).on('changeDate', function(selected) {
+        $(this).datepicker('hide');
+    });
+});
+
+*/
 
 
 // Click event for our today's date button which shows today's data
