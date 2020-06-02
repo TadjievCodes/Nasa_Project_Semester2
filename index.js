@@ -58,12 +58,12 @@ getData(5).catch(err => {
 date_btn.addEventListener('click', function(event) {
     let date_val = calendar.value;
 
-    //And Do I really need to convert it here to Date Object as it throws errors when I do it that way?
+
     let actual_date = new Date(date_val); // convert string to Date Object
 
     // preventing default behaviour 
     event.preventDefault()
-    if (date_val < min_date || date_val > new Date()) {
+    if (actual_date < min_date || actual_date > new Date()) {
         console.log("out of range!!")
     } else {
         getData(date_val).catch(err => {
@@ -81,7 +81,7 @@ date_btn.addEventListener('click', function(event) {
 
     // preventing default behaviour 
     event.preventDefault()
-    if (date_val < min_date || date_val > new Date()) {
+    if (actual_date < min_date || actual_date > new Date()) {
         console.log("out of range!!")
     } else {
         getData(date_val).catch(err => {
