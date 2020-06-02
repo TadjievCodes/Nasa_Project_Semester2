@@ -156,3 +156,9 @@ iframe {
 .btn-group {
     margin-left: 1.5rem;
 }
+
+#speed-container {
+    position: fixed;
+    right: 2em;
+    bottom: 0;
+}
