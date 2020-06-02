@@ -123,13 +123,15 @@ iframe {
     border: none;
 }
 
-#date {
+#date,
+#date1 {
     border-radius: 5px;
     border: 2px solid gray;
     margin: 5px
 }
 
-#date:hover {
+#date:hover,
+#date1:hover {
     border: 2px var(--blue) solid;
 }
 
