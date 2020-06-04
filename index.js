@@ -226,9 +226,34 @@ today_btn.addEventListener('click', function(event) {
     //     day = '0' + day;
     // }
 
-    event.preventDefault();
+    //event.preventDefault();
 
-    returndates("GET", "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU");
+    /*
+        var myHeaders = new Headers();
+        myHeaders.append("api-key", "32isbi7Lug22v8CKogygf5b2EZwpdFhS2OotvWem");
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+
+
+        fetch("https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+
+        
+
+        nasaDays.forEach(function(day) {
+            nasaDays.push(new Day(day));
+            day.createView(container, res_btns);
+        }) 
+    */
+    getData(today_date())
 
     // Removes the button with this one line after each execution if needed
     //event.target.remove();
@@ -268,7 +293,7 @@ async function returndates(start, end) {
 
 
 // Old API call function
-/*
+
 
 
 async function getData(arg) {
@@ -302,7 +327,7 @@ async function getData(arg) {
     }
 */
 
-/*
+
 
     //  isArray() method checks whether the passed variable is an Array object. It returns a true boolean value if the variable is an array and false if it is not.
     if (!(Array.isArray(data))) {
@@ -323,7 +348,7 @@ async function getData(arg) {
 
 }
 
-*/
+
 
 
 
