@@ -16,8 +16,8 @@ const res_btns = document.getElementsByName('res')
 var nasaDays = [];
 
 // Setting the max date as today's date in our Calendar
-calendar.setAttribute('max', today_date());
-calendar1.setAttribute('max', today_date());
+//calendar.setAttribute('max', today_date());
+//calendar1.setAttribute('max', today_date());
 
 
 // Function to get the current day in our calendar
@@ -44,22 +44,24 @@ console.log(min_date);
 
 // Returns randomly 5 items or datas from the JSON External file 
 // Just trying to play with it
-getData(5).catch(err => {
-    console.log(err)
-})
+//getData(5).catch(err => {
+//  console.log(err)
+//})
 
 
 
 // Event listner on click to get calendar's value the date
 // And some validations so it doesn't go out of tge min_date range and new Date() which is today's range
 // The reason I set min_date to "1995-06-16" as that's from when the images and data for APOD API is available
-
+/*
 // Second on the right date picker
 date_btn.addEventListener('click', function(event) {
     let date_val = calendar.value;
+    let date_val1 = calendar1.value;
 
 
     let actual_date = new Date(date_val); // convert string to Date Object
+    let actual_date1 = new Date(date_val1); // convert string to Date Object
 
     // preventing default behaviour 
     event.preventDefault()
@@ -71,10 +73,96 @@ date_btn.addEventListener('click', function(event) {
         });
     }
 
+
+    if (actual_date1 < min_date || actual_date1 > new Date()) {
+        console.log("out of range!!")
+    } else {
+        getData(date_val1).catch(err => {
+            console.log(err)
+        });
+    }
+
+
+
 })
 
-// First Date Picker
+*/
 
+//const calendar2 = document.getElementById('datetimepicker7');
+// just added  date1 for the first calendar to start from
+const calendar3 = document.getElementById('datepicker');
+//const calendar3 = document.getElementsByName('input[name = "datefilter"]');
+
+//calendar2.setAttribute('max', today_date());
+//calendar3.setAttribute('max', today_date());
+
+
+date_btn.addEventListener('click', function(event) {
+    // let date_val = calendar2.value;
+    let date_val1 = calendar3.value;
+
+
+    // let actual_date = new Date(date_val); // convert string to Date Object
+    let actual_date1 = new Date(date_val1); // convert string to Date Object
+
+
+
+    // preventing default behaviour 
+    event.preventDefault()
+    if (actual_date1 < min_date || actual_date1 > new Date()) {
+        console.log("out of range!!")
+    } else {
+        returndates(startDate, endDate).catch(err => {
+
+            console.log(err)
+        });
+    }
+
+});
+
+
+
+
+/*
+    //moment().add(date_val1);
+    let datesList = [];
+
+    function returndates(start, end) {
+        //let datesList = [];
+        let current = moment(start);
+        let finalDay = moment(end);
+        for (let index = current; index.isBefore(finalDay, 'day'); index.add(1, 'day')) {
+            datesList.push(index.format('MM/DD/YYYY'))
+        }
+        console.log(datesList);
+    }
+
+
+    var iterate = datesList.some(dateslist => {
+        dateslist.stringify();
+
+        //  createView(day)
+        //nasaDays.push(new Day(day));
+    });
+
+*/
+/*
+    event.preventDefault()
+    if (actual_date1 < min_date || actual_date1 > new Date()) {
+        console.log("out of range!!")
+    } else {
+        getData(iterate).catch(err => {
+            console.log(err)
+        });
+    }
+
+
+
+})
+
+*/
+// First Date Picker
+/*
 date_btn.addEventListener('click', function(event) {
     let date_val = calendar1.value;
     let actual_date = new Date(date_val); // convert string to Date Object
@@ -90,7 +178,7 @@ date_btn.addEventListener('click', function(event) {
     }
 
 })
-
+*/
 // Now how to set them together so they produce the value dates between the range and I shouldn't allow users to select more than the 1-month worth of data?
 
 // Why my jquery gives error when trying to be dependent on each other?
@@ -138,9 +226,9 @@ today_btn.addEventListener('click', function(event) {
     //     day = '0' + day;
     // }
 
-    event.preventDefault()
+    event.preventDefault();
 
-    getData(today_date())
+    returndates("GET", "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU");
 
     // Removes the button with this one line after each execution if needed
     //event.target.remove();
@@ -149,6 +237,39 @@ today_btn.addEventListener('click', function(event) {
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
+
+async function returndates(start, end) {
+    const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
+    let dataList = []
+    let current = moment(start)
+    let finalDay = moment(end)
+    for (let index = current; index.isSameOrBefore(finalDay, 'day'); index.add(1, 'day')) {
+        let response = await fetch(api_link + index.format('YYYY-MM-DD'))
+        let data = await response.json()
+        dataList.push(data)
+    }
+    console.log(dataList)
+
+    dataList.forEach(function(day) {
+        //  createView(day)
+        nasaDays.push(new Day(day));
+    })
+    console.log(nasaDays);
+
+    // Again iterating and creating the display for the selected days with createView method we have in our constructor
+    nasaDays.forEach(function(day) {
+        day.createView(container, res_btns)
+    })
+}
+
+
+
+
+
+
+// Old API call function
+/*
+
 
 async function getData(arg) {
 
@@ -181,6 +302,8 @@ async function getData(arg) {
     }
 */
 
+/*
+
     //  isArray() method checks whether the passed variable is an Array object. It returns a true boolean value if the variable is an array and false if it is not.
     if (!(Array.isArray(data))) {
         data = [data];
@@ -200,6 +323,7 @@ async function getData(arg) {
 
 }
 
+*/
 
 
 
@@ -259,5 +383,4 @@ $(document).ready(function() {
 
     });
 
-});
-*/
+}); */

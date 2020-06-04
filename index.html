@@ -8,6 +8,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/styles.css">
     <!--<script src="day.js"></script> -->
+
+    <!--Bootstrap normal CDN linking-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--External dAte picker trial-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+
+    <!--Bootstrap Date Picker connection-->
+    <!-- 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+   -->
     <title>Nasa API APOD</title>
 </head>
 
@@ -48,17 +68,101 @@
                 click here 
             </button>
 
-
+            <!-- 
             <form class="form-inline my-2 my-lg-0">
                 <label for="from" class="btn btn-secondary">From Date:</label>
                 <input class="firstdate" type="date" id="date1" min="1995-06-16">
-                <!--min="1995-06-16"-->
+                
 
                 <label for="toDate" class="btn btn-secondary">To Date:</label>
                 <input class="seconddate" type="date" id="date" min="1995-06-16">
-                <!--min="1995-06-16"-->
+                
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="go">Get Data</button>
             </form>
+         -->
+            <!--    
+            <div class="container">
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7" />
+                            <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+                            <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8" />
+                            <div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">
+                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="go">Get Data</button>
+            <script type="text/javascript">
+                $(function() {
+                    $('#datetimepicker7').datetimepicker({
+                        format: 'DD-MM-YYYY',
+                        maxDate: moment()
+                    });
+
+                    $('#datetimepicker8').datetimepicker({
+                        format: 'DD-MM-YYYY',
+                        maxDate: moment()
+                            //useCurrent: true
+                    });
+                    $("#datetimepicker7").on("change.datetimepicker", function(e) {
+                        $('#datetimepicker8').datetimepicker('minDate', e.date);
+                    });
+                    $("#datetimepicker8").on("change.datetimepicker", function(e) {
+                        $('#datetimepicker7').datetimepicker('maxDate', e.date);
+                    });
+                });
+            </script> 
+                        end of bootsrap method-->
+
+            <input type="text" id="datepicker" name="datefilter" value="" />
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="go">Get Data</button>
+            <script type="text/javascript">
+                $(function() {
+                    /*
+                    function returndates(start, end) {
+                        let datesList = [];
+                        let current = moment(start);
+                        let finalDay = moment(end);
+                        for (let index = current; index.isBefore(finalDay, 'day'); index.add(1, 'day')) {
+                            datesList.push(index.format('MM/DD/YYYY'))
+                        }
+                        console.log(datesList);
+                    }
+                    */
+
+                    $('input[name="datefilter"]').daterangepicker({
+                        autoUpdateInput: false,
+                        locale: {
+                            cancelLabel: 'Clear'
+                        }
+                    });
+
+                    $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+                        $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+                        returndates(picker.startDate, picker.endDate);
+                    });
+
+                    $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+                        $(this).val('');
+                    });
+
+                });
+            </script>
+
+
+
 
         </div>
     </nav>
@@ -80,10 +184,6 @@
     <!--To make the animation of stars work special link-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
     <script src="starfield.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 
