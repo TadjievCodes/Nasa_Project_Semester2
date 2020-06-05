@@ -406,15 +406,17 @@ nasaDays = [];
 // Main arrow function to fill the Select Dropdown List with our nasaDays array values accordingly
 let startUp = () => {
 
-    for (var i = 0; i < nasaDays.length; i++) {
-        var optn = nasaDays[i].data.title;
-        var el = document.createElement("option");
-        el.textContent = optn;
-        el.value = optn;
-        select.appendChild(el);
-    }
-
-}
+        for (var i = 0; i < nasaDays.length; i++) {
+            var optn = nasaDays[i].data.title;
+            if (optn && optn != "") { // validating in case if there's empty data it won't go inside the dropdown list
+                //var optn = nasaDays[i].data.title;
+                var el = document.createElement("option");
+                el.textContent = optn;
+                el.value = optn;
+                select.appendChild(el);
+            } // inner closing if statement tag
+        } // for loop
+    } // function end
 
 
 
