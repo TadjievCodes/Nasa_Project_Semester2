@@ -35,11 +35,11 @@ class Day {
         var res;
 
         res_btns.forEach(function(rad) {
-            if (rad.checked) {
-                res = rad.value;
-            }
-        })
-
+                if (rad.checked) {
+                    res = rad.value;
+                }
+            })
+            // Implemented a choice for SD or HD quality of the video and you can get to watch the videos as well
         if (res === 'hd') {
             media_el.setAttribute('src', this.data.hdurl);
             console.log('hfkhhguiuhgfuihgcfghuijhv', res)
