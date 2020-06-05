@@ -184,54 +184,12 @@ date_btn.addEventListener('click', function(event) {
 
 })
 */
-// Now how to set them together so they produce the value dates between the range and I shouldn't allow users to select more than the 1-month worth of data?
 
-// Why my jquery gives error when trying to be dependent on each other?
-/*
-
-$(document).ready(function() {
-    $("#date").datepicker({
-        format: 'dd/mm/yyyy',
-        autoclose: 1,
-        //startDate: new Date(),
-        todayHighlight: false,
-        //endDate: new Date()
-    }).on('changeDate', function(selected) {
-        var minDate = new Date(selected.date.valueOf());
-        $('#txtToDate').datepicker('setStartDate', minDate);
-        $("#txtToDate").val($("#txtFromDate").val());
-        $(this).datepicker('hide');
-    });
-
-    $("#date1").datepicker({
-        format: 'dd/mm/yyyy',
-        todayHighlight: true,
-        //endDate: new Date()
-    }).on('changeDate', function(selected) {
-        $(this).datepicker('hide');
-    });
-});
-
-*/
 
 
 // Click event for our today's date button which shows today's data
+
 today_btn.addEventListener('click', function(event) {
-    // let today = new Date();
-    // let today_obj = new Date();
-    // let year = today_obj.getFullYear();
-    // let month = today_obj.getMonth()+ 1;
-    // let day = today_obj.getDate();
-    // console.log(month)
-    // if(month < 10){
-    //     month = '0' + month;
-    // }
-
-    // if (day < 10){
-    //     day = '0' + day;
-    // }
-
-    //event.preventDefault();
 
     /*
         var myHeaders = new Headers();
@@ -242,28 +200,33 @@ today_btn.addEventListener('click', function(event) {
             headers: myHeaders,
             redirect: 'follow'
         };
-
-
-
         fetch("https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU", requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
 
 
-        
+         
 
         nasaDays.forEach(function(day) {
             nasaDays.push(new Day(day));
             day.createView(container, res_btns);
         }) 
     */
+
+    var url = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU";
+    getJSONAsync(url);
+    //.createView(container, res_btns);
+    /*
+     nasaDays.forEach(function(day) {
+             day.createView(container, res_btns);
+         })
+         */
     //    getData(today_date())
 
     // Removes the button with this one line after each execution if needed
     //event.target.remove();
 })
-
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
@@ -315,14 +278,62 @@ async function returndates(start, end) {
 */
 
 
-}
+} // End of the async returndates Function for calling the API of APOD
+
 
 
 //} //else closign bracket
 
-
-
 // Old API call function
+
+// Steps in creating AJAX >>>>>>
+// 1) Create an XMLHttpRequest Object.
+// 2) Create or Define a Callback Function.
+// 3) Open a Request (Which is usually GET or POST).          request.open("GET", url)
+// 4) Send the Request (Which is usually GET or POST).        request.send();
+
+
+// Define your async ajax call function
+function getJSONAsync(url) {
+    // iN THIS THEME ALL THE AJAX AND JSON RELATED KEYWORDS HIGHLIGHTED IN YELLOW         
+    // Or could name the variable as hxr as that's definition of AJAX     
+    var request = new XMLHttpRequest();
+
+    //onreadystatechange event and then callback function
+    request.onreadystatechange = function() {
+            // check if is finished readystate === 4 and everything is OK
+            if (request.readyState === 4 && request.status === 200) {
+
+                var jsonString = request.responseText;
+                // handle resposne text here
+                var jsonObject = JSON.parse(request.responseText);
+                //Making the Empty array equal to the JSON object which is getting parsed converted to the JavaScript Object
+                nasaDays = jsonObject;
+                //document.getElementById('idAuthor').innerHTML = jsonObject[currentIndex].name;
+                // We could have done jsonObject[15].download_url; to access specifically to the fifteenth JSON object inside the array
+                //document.getElementById('beerName').src = jsonObject[currentIndex].image_url;
+
+                //jsonObject.createView(container, res_btns);
+                //var a = 0; for breakpoints if to test on dev tools
+            }
+        }
+        // open a connection using URL
+    request.open("GET", url)
+        // Send the GET request
+    request.setRequestHeader('api-key', '32isbi7Lug22v8CKogygf5b2EZwpdFhS2OotvWem');
+
+    request.send();
+
+}
+
+
+/*
+function helper() {
+    var url = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU";
+    getJSONAsync(url);
+
+}
+*/
 
 
 /*
@@ -382,7 +393,7 @@ async function getData(arg) {
 
 
 
-
+// no neeed for slect variable?
 var select = document.getElementById("displayFilter");
 
 nasaDays = [];
@@ -439,12 +450,6 @@ let selecting = () => {
 
 
 
-
-
-
-
-
-
 //down.innerHTML = "Elements Added";
 
 /*
@@ -464,29 +469,3 @@ if (departmentSelection.value === optn) { // or optn.value
 
 // Kind of on load event listener function
 // window.addEventListener("DOMContentLoaded", function name)
-
-
-// Jquery method doesn;t seem to work
-
-/*
-$(document).ready(function() {
-
-    $('.firstdate input').on('change', function() {
-
-        var datearray = $('.firstdate input').val().split("-");
-
-        var montharray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-        var year = "20" + datearray[2];
-
-        var month = montharray.indexOf(datearray[1]) + 1;
-
-        var day = datearray[0];
-
-        var minDate = (year + "-" + month + "-" + day);
-
-        $('.seconddate input').attr('min', minDate);
-
-    });
-
-}); */
