@@ -193,3 +193,7 @@ iframe {
 #datepicker {
     margin-left: 20px;
 }
+
+#go {
+    max-width: 120px;
+}
