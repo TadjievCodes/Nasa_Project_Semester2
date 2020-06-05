@@ -188,7 +188,7 @@ date_btn.addEventListener('click', function(event) {
 
 
 // Click event for our today's date button which shows today's data
-
+/*
 today_btn.addEventListener('click', function(event) {
 
     /*
@@ -213,7 +213,7 @@ today_btn.addEventListener('click', function(event) {
             day.createView(container, res_btns);
         }) 
     */
-
+/*
     var url = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU";
     getJSONAsync(url);
     //.createView(container, res_btns);
@@ -222,11 +222,12 @@ today_btn.addEventListener('click', function(event) {
              day.createView(container, res_btns);
          })
          */
-    //    getData(today_date())
+//    getData(today_date())
 
-    // Removes the button with this one line after each execution if needed
-    //event.target.remove();
-})
+// Removes the button with this one line after each execution if needed
+//event.target.remove();
+//}) 
+
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
@@ -292,6 +293,7 @@ async function returndates(start, end) {
 // 3) Open a Request (Which is usually GET or POST).          request.open("GET", url)
 // 4) Send the Request (Which is usually GET or POST).        request.send();
 
+/*
 
 // Define your async ajax call function
 function getJSONAsync(url) {
@@ -325,6 +327,8 @@ function getJSONAsync(url) {
     request.send();
 
 }
+
+*/
 
 
 /*
