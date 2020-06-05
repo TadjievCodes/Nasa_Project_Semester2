@@ -1,3 +1,5 @@
+// Es6 method of creating a Constructor for Objects through class constructor instead of the old way functon style
+
 class Day {
     constructor(data) {
         this.data = data;
