@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Tadjiev Mukhammadkhon-->
 
 <head>
     <meta charset="UTF-8">
@@ -70,6 +71,12 @@
 
                     $('input[name="datefilter"]').daterangepicker({
                         autoUpdateInput: false,
+                        minDate: new Date('1995, 06, 16'),
+                        maxDate: new Date(),
+                        maxSpan: {
+                            "days": 29
+                                // As maxSpan starts from 0 index so here 29 but we can't select more than 30 days to be exact.The other dates appear erased if selecting more than a month oe 30 days
+                        },
                         locale: {
                             cancelLabel: 'Clear'
                         }
@@ -81,13 +88,11 @@
                     $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
                         $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
 
-                        if (actual_date < min_date || actual_date > new Date()) {
-                            alert("out of range!!");
-                        } else {
-                            returndates(picker.startDate, picker.endDate).catch(err => {
-                                console.log(err)
-                            });
-                        }
+
+                        returndates(picker.startDate, picker.endDate).catch(err => {
+                            console.log(err)
+                        });
+
                     });
 
                     $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
