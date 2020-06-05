@@ -141,6 +141,9 @@ iframe {
     border: 2px grey solid;
     border-radius: 5px;
     background-color: grey;
+    transition-property: opacity, background, box-shadow, border-radius;
+    transition-duration: .5s;
+    transition-delay: .2s, .3s, 0s;
 }
 
 #go:hover,
@@ -148,6 +151,28 @@ iframe {
     color: #fff;
     border: 2px var(--blue) solid;
     background: #294fe6;
+    color: white;
+    box-shadow: 3px rgba (255, 255, 255.7);
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    -ms-border-radius: 1em;
+    -o-border-radius: 1em;
+}
+
+#go:link,
+#today_btn:link {
+    color: #ffa949;
+    text-decoration: none;
+    background: violet;
+}
+
+#go:active,
+#today_btn:active {
+    color: blue;
+    background: #a33830;
 }
 
 #stand,
@@ -163,4 +188,8 @@ iframe {
     position: fixed;
     right: 2em;
     bottom: 0;
+}
+
+#datepicker {
+    margin-left: 20px;
 }
