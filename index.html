@@ -82,9 +82,9 @@
                             cancelLabel: 'Clear'
                         }
                     });
-                    const min_date = new Date('1995, 06, 16');
-                    let date_val = calendar.value; // store the value of the calendar in date val first
-                    let actual_date = new Date(date_val); // convert the same string to Date Object
+                    //const min_date = new Date('1995, 06, 16');
+                    //let date_val = calendar.value; // store the value of the calendar in date val first
+                    //let actual_date = new Date(date_val); // convert the same string to Date Object
 
                     $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
                         $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
