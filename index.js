@@ -246,6 +246,16 @@ if (actual_date < min_date || actual_date > new Date()) {
 
 */
 
+/*
+setInterval(function() {
+    if (response.state() == 'resolved' && response.state() !== 'pending') {
+        returndates(picker.startDate, picker.endDate).catch(err => {
+            console.log(err)
+        });
+    }
+}); 
+*/ // Trying code if already data exists don't send another AJAX request
+
 async function returndates(start, end) {
     const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
     let dataList = []
@@ -277,6 +287,8 @@ async function returndates(start, end) {
         data = response.responseText;
     }  
 */
+
+
 
 
 } // End of the async returndates Function for calling the API of APOD
