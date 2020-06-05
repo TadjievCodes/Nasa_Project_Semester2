@@ -3,6 +3,26 @@
 class Day {
     constructor(data) {
         this.data = data;
+
+        // Validation of task 9 if anything includes undefined then change to Unknown
+        if (this.data.title == undefined) {
+            this.data.title = "Unknown";
+        }
+        if (this.data.date == undefined) {
+            this.data.date = "Unknown";
+        }
+        if (this.data.media_type == undefined) {
+            this.data.media_type = "Unknown";
+        }
+        if (this.data.url == undefined) {
+            this.data.url = "Unknown";
+        }
+        if (this.data.explanation == undefined) {
+            this.data.explanation = "Unknown";
+        }
+        if (this.data.copyright == undefined) {
+            this.data.copyright = "Unknown";
+        }
     }
 
     createView(container, res_btns) {
@@ -79,7 +99,6 @@ class Day {
         let copyright_el = document.createElement('p');
         copyright_el.innerText = `Copyright: ${this.data.copyright}`;
         card.appendChild(copyright_el);
-
 
 
 
