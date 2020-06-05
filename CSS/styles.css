@@ -172,7 +172,7 @@ iframe {
 #go:active,
 #today_btn:active {
     color: blue;
-    background: #a33830;
+    background: purple;
 }
 
 #stand,
@@ -195,5 +195,5 @@ iframe {
 }
 
 #go {
-    max-width: 120px;
+    width: 100px;
 }
