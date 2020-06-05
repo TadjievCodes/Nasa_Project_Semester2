@@ -1,10 +1,12 @@
 /* deepscan-disable */
 
 const container = document.getElementById('container');
-const date_btn = document.getElementById('go');
-const calendar = document.getElementById('date');
+//const date_btn = document.getElementById('go');
+//const calendar = document.getElementById('date');
 // just added  date1 for the first calendar to start from
-const calendar1 = document.getElementById('date1');
+//const calendar1 = document.getElementById('date1');
+
+const calendar = document.getElementById('datepicker');
 
 const min_date = new Date('1995, 06, 16');
 const today_btn = document.getElementById('today_btn');
@@ -16,7 +18,7 @@ const res_btns = document.getElementsByName('res')
 var nasaDays = [];
 
 // Setting the max date as today's date in our Calendar
-//calendar.setAttribute('max', today_date());
+calendar.setAttribute('max', today_date());
 //calendar1.setAttribute('max', today_date());
 
 
@@ -90,12 +92,13 @@ date_btn.addEventListener('click', function(event) {
 
 //const calendar2 = document.getElementById('datetimepicker7');
 // just added  date1 for the first calendar to start from
-const calendar3 = document.getElementById('datepicker');
+//const calendar3 = document.getElementById('datepicker');
 //const calendar3 = document.getElementsByName('input[name = "datefilter"]');
 
 //calendar2.setAttribute('max', today_date());
 //calendar3.setAttribute('max', today_date());
 
+/*
 
 date_btn.addEventListener('click', function(event) {
     // let date_val = calendar2.value;
@@ -103,6 +106,7 @@ date_btn.addEventListener('click', function(event) {
 
 
     // let actual_date = new Date(date_val); // convert string to Date Object
+    const calendar3 = document.getElementById('datepicker');
     let actual_date1 = new Date(date_val1); // convert string to Date Object
 
 
@@ -120,6 +124,7 @@ date_btn.addEventListener('click', function(event) {
 
 });
 
+*/
 
 
 
@@ -253,7 +258,7 @@ today_btn.addEventListener('click', function(event) {
             day.createView(container, res_btns);
         }) 
     */
-    getData(today_date())
+    //    getData(today_date())
 
     // Removes the button with this one line after each execution if needed
     //event.target.remove();
@@ -262,6 +267,20 @@ today_btn.addEventListener('click', function(event) {
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
+
+let date_val = calendar.value; // store the value of the calendar in date val first
+let actual_date = new Date(date_val); // convert the same string to Date Object
+
+
+
+// preventing default behaviour 
+//event.preventDefault()
+/*
+if (actual_date < min_date || actual_date > new Date()) {
+    alert("out of range!!");
+} else {
+
+*/
 
 async function returndates(start, end) {
     const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
@@ -280,22 +299,33 @@ async function returndates(start, end) {
         nasaDays.push(new Day(day));
     })
     console.log(nasaDays);
+    /*
+     // Again iterating and creating the display for the selected days with createView method we have in our constructor
+     nasaDays.forEach(function(day) {
+         day.createView(container, res_btns)
+     })
+     */
+    /*
+    if(response !== null)
+    {
+        reponse.open("GET", url, true);
+        response.send(null);
+        data = response.responseText;
+    }  
+*/
 
-    // Again iterating and creating the display for the selected days with createView method we have in our constructor
-    nasaDays.forEach(function(day) {
-        day.createView(container, res_btns)
-    })
+
 }
 
 
-
+//} //else closign bracket
 
 
 
 // Old API call function
 
 
-
+/*
 async function getData(arg) {
 
     var api_link;
@@ -327,7 +357,7 @@ async function getData(arg) {
     }
 */
 
-
+/*
 
     //  isArray() method checks whether the passed variable is an Array object. It returns a true boolean value if the variable is an array and false if it is not.
     if (!(Array.isArray(data))) {
@@ -348,7 +378,7 @@ async function getData(arg) {
 
 }
 
-
+*/
 
 
 
@@ -358,8 +388,8 @@ var select = document.getElementById("displayFilter");
 nasaDays = [];
 
 
-// Main function to fill the Select Dropdown List with our nasaDays array values accordingly
-function startUp() {
+// Main arrow function to fill the Select Dropdown List with our nasaDays array values accordingly
+let startUp = () => {
 
     for (var i = 0; i < nasaDays.length; i++) {
         var optn = nasaDays[i].data.title;
@@ -370,16 +400,67 @@ function startUp() {
     }
 
 }
+
+
+
+
+
+
+// Isn't there any extra code? Double check buddy
+// Used an arrow function from ES 2015
+let selecting = () => {
+        const departmentSelection = document.getElementById('displayFilter');
+
+        // if (departmentSelection.value == optn.value) { // or optn.value
+
+        for (let i = 0; i < nasaDays.length; i++) {
+
+            var tempNasa = nasaDays[i];
+
+            if (departmentSelection.value == tempNasa.data.title) { // This line seems ok now, goes to data and to title of it
+
+                // created variable to compare in our super handy filter method
+                let NasaSelected = departmentSelection.value;
+
+                // again iterating through nasaDays Array and getting the selected value and same time inserting our method createView to display the item selected
+                nasaDays.filter(nasa => {
+                    return nasa.data.title === NasaSelected && nasa.createView(container, res_btns);
+                });
+
+                /*  nasaDays.forEach(function(day) {
+                      day.createView(container, res_btns);
+                  }) */
+            }
+
+
+        } // for loop inner
+    } // function end
+
+
+
+
+
+
+
+
+
+
 //down.innerHTML = "Elements Added";
 
 /*
-    const departmentSelection = document.getElementById('displayFilter');
+const departmentSelection = document.getElementById('displayFilter');
 
-    if (departmentSelection.value === optn.value) {
+if (departmentSelection.value === optn) { // or optn.value
+
+    nasaDays.forEach(function(day) {
+        day.createView(container, res_btns)
+    })
 
 
-    }
+}
+
 */
+
 
 // Kind of on load event listener function
 // window.addEventListener("DOMContentLoaded", function name)

@@ -60,7 +60,7 @@
                 </li>
             </ul>
 
-            <select name="arrayList" id="displayFilter" onload="startUp();">
+            <select name="arrayList" id="displayFilter" onchange="selecting();">
                 <option value="PleaseSelect">Please Select...</option>    
             </select>
             <br><br>
@@ -127,20 +127,9 @@
                         end of bootsrap method-->
 
             <input type="text" id="datepicker" name="datefilter" value="" />
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="go">Get Data</button>
+            <!--  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="go">Get Data</button> -->
             <script type="text/javascript">
                 $(function() {
-                    /*
-                    function returndates(start, end) {
-                        let datesList = [];
-                        let current = moment(start);
-                        let finalDay = moment(end);
-                        for (let index = current; index.isBefore(finalDay, 'day'); index.add(1, 'day')) {
-                            datesList.push(index.format('MM/DD/YYYY'))
-                        }
-                        console.log(datesList);
-                    }
-                    */
 
                     $('input[name="datefilter"]').daterangepicker({
                         autoUpdateInput: false,
@@ -148,10 +137,20 @@
                             cancelLabel: 'Clear'
                         }
                     });
+                    const min_date = new Date('1995, 06, 16');
+                    let date_val = calendar.value; // store the value of the calendar in date val first
+                    let actual_date = new Date(date_val); // convert the same string to Date Object
 
                     $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
                         $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
-                        returndates(picker.startDate, picker.endDate);
+
+                        if (actual_date < min_date || actual_date > new Date()) {
+                            alert("out of range!!");
+                        } else {
+                            returndates(picker.startDate, picker.endDate).catch(err => {
+                                console.log(err)
+                            });
+                        }
                     });
 
                     $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {

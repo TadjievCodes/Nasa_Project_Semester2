@@ -5,6 +5,9 @@ class Day {
 
     createView(container, res_btns) {
 
+        // clearing the Output everytime after the display to display another item
+        container.innerHTML = "";
+
         let card = document.createElement('div');
 
         card.classList.add('card')
