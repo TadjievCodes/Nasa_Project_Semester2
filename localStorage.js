@@ -10,21 +10,21 @@ function supportsLocalStorage() {
 
 // Retrieve searches from Local Storage, return an array
 function getRecentSearches() {
-    var searches = localStorage.getItem('recentSearches');
-    if (searches) {
-        return JSON.parse(searches);
+    nasaDays = localStorage.getItem('recentSearches');
+    if (nasaDays) { // if equals true
+        return JSON.parse(nasaDays);
     }
-    return [];
+    return []; // else return empty array
 }
 
 // Validate and save strings to store of past searches
 function saveSearchString(str) {
-    var searches = getRecentSearches();
-    if (searches.indexOf(str) > -1 || !str) {
+    nasaDays = getRecentSearches();
+    if (nasaDays.indexOf(str) > -1 || !str) {
         return false;
     }
-    searches.push(str);
-    localStorage.setItem('recentSearches', JSON.stringify(searches));
+    nasaDays.push(str);
+    localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
     return true;
 }
 

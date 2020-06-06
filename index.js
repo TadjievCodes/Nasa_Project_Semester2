@@ -1,25 +1,21 @@
 /* deepscan-disable */
 
 const container = document.getElementById('container');
-//const date_btn = document.getElementById('go');
-//const calendar = document.getElementById('date');
-// just added  date1 for the first calendar to start from
-//const calendar1 = document.getElementById('date1');
 
 const calendar = document.getElementById('datepicker');
 
-const min_date = new Date('1995, 06, 16');
-const today_btn = document.getElementById('today_btn');
+//const min_date = new Date('1995, 06, 16');
+const clear_btn = document.getElementById('today_btn');
 
 console.log(document.getElementsByName('res'))
 const res_btns = document.getElementsByName('res')
+
 
 // Our Global Array to store returned data from Asynchronous calls made
 var nasaDays = [];
 
 // Setting the max date as today's date in our Calendar
-calendar.setAttribute('max', today_date());
-//calendar1.setAttribute('max', today_date());
+//calendar.setAttribute('max', today_date());
 
 
 // Function to get the current day in our calendar
@@ -49,212 +45,41 @@ console.log(min_date);
 //getData(5).catch(err => {
 //  console.log(err)
 //})
-
-
-
 // Event listner on click to get calendar's value the date
 // And some validations so it doesn't go out of tge min_date range and new Date() which is today's range
 // The reason I set min_date to "1995-06-16" as that's from when the images and data for APOD API is available
-/*
-// Second on the right date picker
-date_btn.addEventListener('click', function(event) {
-    let date_val = calendar.value;
-    let date_val1 = calendar1.value;
-
-
-    let actual_date = new Date(date_val); // convert string to Date Object
-    let actual_date1 = new Date(date_val1); // convert string to Date Object
-
-    // preventing default behaviour 
-    event.preventDefault()
-    if (actual_date < min_date || actual_date > new Date()) {
-        console.log("out of range!!")
-    } else {
-        getData(date_val).catch(err => {
-            console.log(err)
-        });
-    }
-
-
-    if (actual_date1 < min_date || actual_date1 > new Date()) {
-        console.log("out of range!!")
-    } else {
-        getData(date_val1).catch(err => {
-            console.log(err)
-        });
-    }
 
 
 
-})
-
-*/
-
-//const calendar2 = document.getElementById('datetimepicker7');
-// just added  date1 for the first calendar to start from
-//const calendar3 = document.getElementById('datepicker');
-//const calendar3 = document.getElementsByName('input[name = "datefilter"]');
-
-//calendar2.setAttribute('max', today_date());
-//calendar3.setAttribute('max', today_date());
-
-/*
-
-date_btn.addEventListener('click', function(event) {
-    // let date_val = calendar2.value;
-    let date_val1 = calendar3.value;
 
 
-    // let actual_date = new Date(date_val); // convert string to Date Object
-    const calendar3 = document.getElementById('datepicker');
-    let actual_date1 = new Date(date_val1); // convert string to Date Object
+// Click event for our clear Storage button which shows today's data
+
+clear_btn.addEventListener('click', function(event) {
+
+    // Removes the button with this one line after each execution if needed
+    //event.target.remove();
+    //let date_val = calendar.value; // store the value of the calendar in date val first
+    //let actual_date = new Date(date_val); // convert the same string to Date Object
+
+    // Trying code if already data exists don't send another AJAX request and clear the Storage if button clicked
 
 
 
-    // preventing default behaviour 
-    event.preventDefault()
-    if (actual_date1 < min_date || actual_date1 > new Date()) {
-        console.log("out of range!!")
-    } else {
-        returndates(startDate, endDate).catch(err => {
-
-            console.log(err)
-        });
-    }
-
-});
-
-*/
 
 
 
-/*
-    //moment().add(date_val1);
-    let datesList = [];
-
-    function returndates(start, end) {
-        //let datesList = [];
-        let current = moment(start);
-        let finalDay = moment(end);
-        for (let index = current; index.isBefore(finalDay, 'day'); index.add(1, 'day')) {
-            datesList.push(index.format('MM/DD/YYYY'))
-        }
-        console.log(datesList);
-    }
 
 
-    var iterate = datesList.some(dateslist => {
-        dateslist.stringify();
-
-        //  createView(day)
-        //nasaDays.push(new Day(day));
-    });
-
-*/
-/*
-    event.preventDefault()
-    if (actual_date1 < min_date || actual_date1 > new Date()) {
-        console.log("out of range!!")
-    } else {
-        getData(iterate).catch(err => {
-            console.log(err)
-        });
-    }
+}); // closing bracket for callback function with event listener
 
 
 
-})
 
-*/
-// First Date Picker
-/*
-date_btn.addEventListener('click', function(event) {
-    let date_val = calendar1.value;
-    let actual_date = new Date(date_val); // convert string to Date Object
-
-    // preventing default behaviour 
-    event.preventDefault()
-    if (actual_date < min_date || actual_date > new Date()) {
-        console.log("out of range!!")
-    } else {
-        getData(date_val).catch(err => {
-            console.log(err)
-        });
-    }
-
-})
-*/
-
-
-
-// Click event for our today's date button which shows today's data
-/*
-today_btn.addEventListener('click', function(event) {
-
-    /*
-        var myHeaders = new Headers();
-        myHeaders.append("api-key", "32isbi7Lug22v8CKogygf5b2EZwpdFhS2OotvWem");
-
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
-        fetch("https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-
-         
-
-        nasaDays.forEach(function(day) {
-            nasaDays.push(new Day(day));
-            day.createView(container, res_btns);
-        }) 
-    */
-/*
-    var url = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU";
-    getJSONAsync(url);
-    //.createView(container, res_btns);
-    /*
-     nasaDays.forEach(function(day) {
-             day.createView(container, res_btns);
-         })
-         */
-//    getData(today_date())
-
-// Removes the button with this one line after each execution if needed
-//event.target.remove();
-//}) 
 
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
-// The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified
-
-let date_val = calendar.value; // store the value of the calendar in date val first
-let actual_date = new Date(date_val); // convert the same string to Date Object
-
-
-
-// preventing default behaviour 
-//event.preventDefault()
-/*
-if (actual_date < min_date || actual_date > new Date()) {
-    alert("out of range!!");
-} else {
-
-*/
-
-/*
-setInterval(function() {
-    if (response.state() == 'resolved' && response.state() !== 'pending') {
-        returndates(picker.startDate, picker.endDate).catch(err => {
-            console.log(err)
-        });
-    }
-}); 
-*/ // Trying code if already data exists don't send another AJAX request
+// The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified lesser, cleaner code
 
 async function returndates(start, end) {
     const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
@@ -274,7 +99,7 @@ async function returndates(start, end) {
     })
     console.log(nasaDays);
 
-
+    // Pushing the items into the localStorage of the browser with setItem 
     localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
 
 
@@ -284,10 +109,9 @@ async function returndates(start, end) {
 
 
 
-//} //else closign bracket
+
 
 // Old API call function
-
 // Steps in creating AJAX >>>>>>
 // 1) Create an XMLHttpRequest Object.
 // 2) Create or Define a Callback Function.
@@ -332,15 +156,8 @@ function getJSONAsync(url) {
 */
 
 
-/*
-function helper() {
-    var url = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU";
-    getJSONAsync(url);
 
-}
-*/
-
-
+// Another async fetch function for making API calls but removed it and made another one
 /*
 async function getData(arg) {
 
@@ -359,21 +176,6 @@ async function getData(arg) {
     var data = await response.json();
     console.log(data);
 
-
-    /*
-    if (response.text == "undefined") {
-        response.text = "Unknown";
-    }
-
-    for (var i = 0; i < nasaDays.length; i++) {
-        if (nasaDays[i].data.copyright.value == "undefined") {
-            nasaDays[i].data.copyright.value = "Unknown";
-        }
-
-    }
-*/
-
-/*
 
     //  isArray() method checks whether the passed variable is an Array object. It returns a true boolean value if the variable is an array and false if it is not.
     if (!(Array.isArray(data))) {
@@ -396,9 +198,7 @@ async function getData(arg) {
 
 */
 
-
-
-// no neeed for slect variable?
+// defining our dom targeted element so we can target it in startup arrow function
 var select = document.getElementById("displayFilter");
 
 nasaDays = [];
@@ -445,6 +245,7 @@ let selecting = () => {
                     return nasa.data.title === NasaSelected && nasa.createView(container, res_btns);
                 });
 
+                // If I wanna display all the items then this forEach iteration would be useful
                 /*  nasaDays.forEach(function(day) {
                       day.createView(container, res_btns);
                   }) */
@@ -457,22 +258,17 @@ let selecting = () => {
 
 
 
-//down.innerHTML = "Elements Added";
-
-/*
-const departmentSelection = document.getElementById('displayFilter');
-
-if (departmentSelection.value === optn) { // or optn.value
-
-    nasaDays.forEach(function(day) {
-        day.createView(container, res_btns)
-    })
-
-
-}
-
-*/
 
 
 // Kind of on load event listener function
 // window.addEventListener("DOMContentLoaded", function name)
+
+
+// preventing default behaviour 
+//event.preventDefault()
+/*
+if (actual_date < min_date || actual_date > new Date()) {
+    alert("out of range!!");
+} else {
+
+*/
