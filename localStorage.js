@@ -1,4 +1,5 @@
-'use strict';
+//'use strict';
+/*
 // Test for local storage
 function supportsLocalStorage() {
     try {
@@ -8,6 +9,8 @@ function supportsLocalStorage() {
     }
 }
 
+*/
+/*
 // Retrieve searches from Local Storage, return an array
 function getRecentSearches() {
     nasaDays = localStorage.getItem('recentSearches');
@@ -47,6 +50,8 @@ function clearList(listElement) {
 }
 */
 
+/*
+
 window.onload = function() {
     // Make sure Local Storage exists before trying to use it
     if (supportsLocalStorage()) {
@@ -62,6 +67,7 @@ window.onload = function() {
             appendListItem(recentSearchList, searchString);
         });
 
+        /*
         // Set event handlers
         searchForm.addEventListener('submit', function(event) {
             var searchString = searchBar.value;
@@ -70,10 +76,13 @@ window.onload = function() {
                 //appendListItem(recentSearchList, searchString);
             }
         });
-
+        */
+/*
         clearButton.addEventListener('click', function(event) {
             removeSearches();
             clearList(recentSearchList);
         });
     }
 };
+
+*/

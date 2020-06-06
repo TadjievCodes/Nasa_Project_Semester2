@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Tadjiev Mukhammadkhon-->
+<!-- Tadjiev Mukhammadkhon _ Student# 0971040 -->
+<!--Project 01 = Semester 2 = OOP JavaScript-->
 
 <head>
     <meta charset="UTF-8">
@@ -40,7 +41,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="today_btn">Clear Storage</button>
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" id="today_btn">Clear Local Storage</button>
                 </li>
                 <li class="nav-item">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -82,10 +83,8 @@
                             cancelLabel: 'Clear'
                         }
                     });
-                    //const min_date = new Date('1995, 06, 16');
-                    //let date_val = calendar.value; // store the value of the calendar in date val first
-                    //let actual_date = new Date(date_val); // convert the same string to Date Object  
-                    //'MM/DD/YYYY' Previous format just changed since update project
+
+                    //'MM/DD/YYYY' Previous format just changed since updated project requirement
 
                     $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
                         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
@@ -121,7 +120,7 @@
 
     <script src="day.js"></script>
     <script src="index.js"></script>
-    <script src="localStorage.js"></script>
+    <!-- <script src="localStorage.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
     <!--To make the animation of stars work special link with starfield.js for it specially-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js"></script>
