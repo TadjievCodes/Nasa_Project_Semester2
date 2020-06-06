@@ -33,6 +33,7 @@ function removeSearches() {
     localStorage.removeItem('recentSearches');
 }
 
+/*
 // Create an li, given string contents, append to the supplied ul
 function appendListItem(listElement, string) {
     var listItemElement = document.createElement('LI');
@@ -44,6 +45,7 @@ function appendListItem(listElement, string) {
 function clearList(listElement) {
     listElement.innerHTML = '';
 }
+*/
 
 window.onload = function() {
     // Make sure Local Storage exists before trying to use it
