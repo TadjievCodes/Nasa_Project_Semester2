@@ -273,20 +273,9 @@ async function returndates(start, end) {
         nasaDays.push(new Day(day));
     })
     console.log(nasaDays);
-    /*
-     // Again iterating and creating the display for the selected days with createView method we have in our constructor
-     nasaDays.forEach(function(day) {
-         day.createView(container, res_btns)
-     })
-     */
-    /*
-    if(response !== null)
-    {
-        reponse.open("GET", url, true);
-        response.send(null);
-        data = response.responseText;
-    }  
-*/
+
+
+    localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
 
 
 
