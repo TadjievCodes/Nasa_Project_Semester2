@@ -121,7 +121,7 @@ window.addEventListener('storage', event => {
 // Another way of doing the same thing
 //window.onstorage = () => {};
 
-
+// maybe use .hasOwnProperty() method ?
 
 
 /*
