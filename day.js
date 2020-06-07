@@ -5,9 +5,8 @@ class Day {
         this.data = data;
 
         // Validation of task 9 if anything includes undefined then change to Unknown
-        if (this.data.title == undefined) {
-            this.data.title = "Unknown";
-        }
+        // Any way to reduce this code for these if statements?
+
         if (this.data.date == undefined) {
             this.data.date = "Unknown";
         }

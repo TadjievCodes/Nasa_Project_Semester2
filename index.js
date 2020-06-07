@@ -18,6 +18,7 @@ var nasaDays = [];
 //calendar.setAttribute('max', today_date());
 
 
+/*
 // Function to get the current day in our calendar
 function today_date() {
     let today = new Date(); // deepscan-disable-line
@@ -38,7 +39,7 @@ function today_date() {
 }
 
 console.log(min_date);
-
+*/
 
 // Returns randomly 5 items or datas from the JSON External file 
 // Just trying to play with it
@@ -55,6 +56,7 @@ console.log(min_date);
 
 // Click event for our clear Storage button which shows today's data
 
+/*
 clear_btn.addEventListener('click', function(event) {
 
     // Removes the button with this one line after each execution if needed
@@ -72,7 +74,7 @@ clear_btn.addEventListener('click', function(event) {
 
 
 }); // closing bracket for callback function with event listener
-
+*/
 
 
 
@@ -80,16 +82,17 @@ clear_btn.addEventListener('click', function(event) {
 
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified lesser, cleaner code
+// Also async await makes it asynchronous and waits till the promises get verified as fetch is a promise based browser in built API
 
 async function returndates(start, end) {
     const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
     let dataList = [];
-    let current = moment(start);
-    let finalDay = moment(end);
+    let current = moment(start)
+    let finalDay = moment(end)
     for (let index = current; index.isSameOrBefore(finalDay, 'day'); index.add(1, 'day')) {
-        let response = await fetch(api_link + index.format('YYYY-MM-DD'));
-        let data = await response.json();
-        dataList.push(data);
+        let response = await fetch(api_link + index.format('YYYY-MM-DD'))
+        let data = await response.json()
+        dataList.push(data)
     }
     console.log(dataList);
 
@@ -101,13 +104,58 @@ async function returndates(start, end) {
 
     // To store arrays or objects, you would have to convert them to strings with stringify
     // Pushing the items into the localStorage of the browser with setItem 
-    localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
+    //localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
 
+    /*
+        reponse.then(data => {
+                //now we need to check if the data is new ENOUGH
+                let t = data.time;
+                let p = data.people;
+                let output = document.getElementById('output');
+                let oldtime = localStorage.getItem('westeros-time');
+                if (oldtime) {
+                    //we have data
+                    let intOldTime = parseInt(oldtime);
+                    if ((intOldTime + DATATIMEOUT) < t) {
+                        localStorage.setItem('westeros-time', t);
+                        let ps = JSON.stringify(p);
+                        localStorage.setItem('westeros-ppl', ps);
+                        output.textContent = 'List Updated';
+                    } else {
+                        //no update required
+                        output.textContent = 'List IS Up to Date';
+                    }
 
+                } else {
+                    //no data
+                    localStorage.setItem('westeros-time', t);
+                    let ps = JSON.stringify(p);
+                    localStorage.setItem('westeros-ppl', ps);
+                    output.textContent = 'List Created';
+                }
+            })
+            .catch(err => {
+                let output = document.getElementById('output');
+                output.textContent = JSON.stringify(err, null, 2);
+            })
 
-
+    */
 } // End of the async returndates Function for calling the API of APOD
 
+
+
+
+/*
+function init() {
+    let h1 = document.querySelector('h1');
+    h1.addEventListener('click', fetchData);
+    //OR
+    let timmy = setInterval(fetchData, 20000);
+    //once every 20 seconds
+}
+
+document.addEventListener('DOMContentLoaded', init);
+*/
 
 /*
  There's internal server eroor for June 4 so don't count it as a mistake 
