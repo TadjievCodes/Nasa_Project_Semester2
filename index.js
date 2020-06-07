@@ -102,45 +102,63 @@ async function returndates(start, end) {
     })
     console.log(nasaDays);
 
-    // To store arrays or objects, you would have to convert them to strings with stringify
-    // Pushing the items into the localStorage of the browser with setItem 
-    //localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
 
-    /*
-        reponse.then(data => {
-                //now we need to check if the data is new ENOUGH
-                let t = data.time;
-                let p = data.people;
-                let output = document.getElementById('output');
-                let oldtime = localStorage.getItem('westeros-time');
-                if (oldtime) {
-                    //we have data
-                    let intOldTime = parseInt(oldtime);
-                    if ((intOldTime + DATATIMEOUT) < t) {
-                        localStorage.setItem('westeros-time', t);
-                        let ps = JSON.stringify(p);
-                        localStorage.setItem('westeros-ppl', ps);
-                        output.textContent = 'List Updated';
-                    } else {
-                        //no update required
-                        output.textContent = 'List IS Up to Date';
-                    }
+} // End of the async returndates Function for calling the API of APOD
 
-                } else {
-                    //no data
+
+// To store arrays or objects, you would have to convert them to strings with stringify
+// Pushing the items into the localStorage of the browser with setItem 
+localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
+
+// But for some reason with Local storage my images don't seem to load quick enough some load after many seconds  or first dont show up n then only later
+
+
+// To call the event listener if any data loads
+window.addEventListener('storage', event => {
+    console.log(event)
+})
+
+// Another way of doing the same thing
+//window.onstorage = () => {};
+
+
+
+
+/*
+    reponse.then(data => {
+            //now we need to check if the data is new ENOUGH
+            let t = data.time;
+            let p = data.people;
+            let output = document.getElementById('output');
+            let oldtime = localStorage.getItem('westeros-time');
+            if (oldtime) {
+                //we have data
+                let intOldTime = parseInt(oldtime);
+                if ((intOldTime + DATATIMEOUT) < t) {
                     localStorage.setItem('westeros-time', t);
                     let ps = JSON.stringify(p);
                     localStorage.setItem('westeros-ppl', ps);
-                    output.textContent = 'List Created';
+                    output.textContent = 'List Updated';
+                } else {
+                    //no update required
+                    output.textContent = 'List IS Up to Date';
                 }
-            })
-            .catch(err => {
-                let output = document.getElementById('output');
-                output.textContent = JSON.stringify(err, null, 2);
-            })
 
-    */
-} // End of the async returndates Function for calling the API of APOD
+            } else {
+                //no data
+                localStorage.setItem('westeros-time', t);
+                let ps = JSON.stringify(p);
+                localStorage.setItem('westeros-ppl', ps);
+                output.textContent = 'List Created';
+            }
+        })
+        .catch(err => {
+            let output = document.getElementById('output');
+            output.textContent = JSON.stringify(err, null, 2);
+        })
+
+*/
+
 
 
 
