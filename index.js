@@ -93,8 +93,23 @@ async function returndates(start, end) {
         let response = await fetch(api_link + index.format('YYYY-MM-DD'))
         let data = await response.json()
         dataList.push(data)
-    }
+
+        for (let j = 0; j < dataList.length; j++) {
+            let dataListDate = dataList[j].date;
+
+            if (dataListDate != data) {
+                localStorage.setItem('recentDates', JSON.stringify(dataListDate));
+            } else {
+                localStorage.getItem('recentDates', JSON.parse(dataListDate));
+            }
+
+
+
+        } // inner loop
+
+    } // end of main for loop 
     console.log(dataList);
+
 
     dataList.forEach(function(day) {
         //  createView(day)
@@ -103,15 +118,74 @@ async function returndates(start, end) {
     console.log(nasaDays);
 
 
+    /*
+    for (var j = 0; j < dataList.length; j++) {
+        var dataListDate = dataList[j].date;
+
+        if (dataListDate != data) {
+            localStorage.setItem('recentSearches', JSON.stringify(dataListDate));
+        } else {
+            localStorage.getItem('recentSearches', JSON.parse(dataListDate));
+        }
+
+
+
+    }
+    */
+
+    /*
+
+        for (var i = 0; i < nasaDays.length; i++) {
+            var nasaDate = nasaDays[i].data.date;
+            for (var j = 0; j < dataList.length; j++) {
+                var dataListDate = dataList[j].date;
+
+                if (dataListDate != nasaDate) {
+                    localStorage.setItem('recentSearches', JSON.stringify(dataListDate));
+                } else {
+                    localStorage.getItem('recentSearches', JSON.parse(dataListDate));
+                }
+
+
+
+            }
+        }
+        */
+    /*
+
+    if (dataList.value != current && dataList.value != finalDay) {
+        localStorage.setItem('recentSearches', JSON.stringify(dataList));
+    } else {
+        localStorage.getItem('recentSearches', JSON.parse(dataList));
+    }
+*/
+
 } // End of the async returndates Function for calling the API of APOD
 
 
 // To store arrays or objects, you would have to convert them to strings with stringify
 // Pushing the items into the localStorage of the browser with setItem 
-localStorage.setItem('recentSearches', JSON.stringify(nasaDays));
+let datepicker = document.getElementById('datepicker').value;
+
+
+//localStorage.setItem('recentSearches', JSON.stringify(datepicker));
 
 // But for some reason with Local storage my images don't seem to load quick enough some load after many seconds  or first dont show up n then only later
 
+/*
+
+for (var i = 0; i < nasaDays.length; i++) {
+    var optnDate = nasaDays[i].data.date;
+    if (dataList != dataList) {
+        localStorage.setItem('recentSearches', JSON.stringify(dataList));
+    } else {
+        localStorage.getItem('recentSearches', JSON.parse(dataList));
+    }
+
+
+}
+
+*/
 
 // To call the event listener if any data loads
 window.addEventListener('storage', event => {
@@ -123,43 +197,42 @@ window.addEventListener('storage', event => {
 
 // maybe use .hasOwnProperty() method ?
 
-
 /*
-    reponse.then(data => {
-            //now we need to check if the data is new ENOUGH
-            let t = data.time;
-            let p = data.people;
-            let output = document.getElementById('output');
-            let oldtime = localStorage.getItem('westeros-time');
-            if (oldtime) {
-                //we have data
-                let intOldTime = parseInt(oldtime);
-                if ((intOldTime + DATATIMEOUT) < t) {
-                    localStorage.setItem('westeros-time', t);
-                    let ps = JSON.stringify(p);
-                    localStorage.setItem('westeros-ppl', ps);
-                    output.textContent = 'List Updated';
-                } else {
-                    //no update required
-                    output.textContent = 'List IS Up to Date';
-                }
 
-            } else {
-                //no data
+reponse.then(data => {
+        //now we need to check if the data is new ENOUGH
+        let t = data.time;
+        let p = data.people;
+        let output = document.getElementById('output');
+        let oldtime = localStorage.getItem('westeros-time');
+        if (oldtime) {
+            //we have data
+            let intOldTime = parseInt(oldtime);
+            if ((intOldTime + DATATIMEOUT) < t) {
                 localStorage.setItem('westeros-time', t);
                 let ps = JSON.stringify(p);
                 localStorage.setItem('westeros-ppl', ps);
-                output.textContent = 'List Created';
+                output.textContent = 'List Updated';
+            } else {
+                //no update required
+                output.textContent = 'List IS Up to Date';
             }
-        })
-        .catch(err => {
-            let output = document.getElementById('output');
-            output.textContent = JSON.stringify(err, null, 2);
-        })
+
+        } else {
+            //no data
+            localStorage.setItem('westeros-time', t);
+            let ps = JSON.stringify(p);
+            localStorage.setItem('westeros-ppl', ps);
+            output.textContent = 'List Created';
+        }
+    })
+    .catch(err => {
+        let output = document.getElementById('output');
+        output.textContent = JSON.stringify(err, null, 2);
+    })
+
 
 */
-
-
 
 
 
