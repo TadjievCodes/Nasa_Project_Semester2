@@ -17,7 +17,7 @@ var nasaDays = [];
 // Setting the max date as today's date in our Calendar
 //calendar.setAttribute('max', today_date());
 
-
+// First used this to get today's date but then just thought to use Date.now
 /*
 // Function to get the current day in our calendar
 function today_date() {
@@ -163,6 +163,9 @@ async function returndates(start, end) {
 } // End of the async returndates Function for calling the API of APOD
 
 
+
+
+
 // To store arrays or objects, you would have to convert them to strings with stringify
 // Pushing the items into the localStorage of the browser with setItem 
 let datepicker = document.getElementById('datepicker').value;
@@ -197,56 +200,11 @@ window.addEventListener('storage', event => {
 
 // maybe use .hasOwnProperty() method ?
 
-/*
-
-reponse.then(data => {
-        //now we need to check if the data is new ENOUGH
-        let t = data.time;
-        let p = data.people;
-        let output = document.getElementById('output');
-        let oldtime = localStorage.getItem('westeros-time');
-        if (oldtime) {
-            //we have data
-            let intOldTime = parseInt(oldtime);
-            if ((intOldTime + DATATIMEOUT) < t) {
-                localStorage.setItem('westeros-time', t);
-                let ps = JSON.stringify(p);
-                localStorage.setItem('westeros-ppl', ps);
-                output.textContent = 'List Updated';
-            } else {
-                //no update required
-                output.textContent = 'List IS Up to Date';
-            }
-
-        } else {
-            //no data
-            localStorage.setItem('westeros-time', t);
-            let ps = JSON.stringify(p);
-            localStorage.setItem('westeros-ppl', ps);
-            output.textContent = 'List Created';
-        }
-    })
-    .catch(err => {
-        let output = document.getElementById('output');
-        output.textContent = JSON.stringify(err, null, 2);
-    })
-
-
-*/
 
 
 
-/*
-function init() {
-    let h1 = document.querySelector('h1');
-    h1.addEventListener('click', fetchData);
-    //OR
-    let timmy = setInterval(fetchData, 20000);
-    //once every 20 seconds
-}
+//document.addEventListener('DOMContentLoaded', init);
 
-document.addEventListener('DOMContentLoaded', init);
-*/
 
 /*
  There's internal server eroor for June 4 so don't count it as a mistake 
