@@ -83,7 +83,35 @@ clear_btn.addEventListener('click', function(event) {
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified lesser, cleaner code
 // Also async await makes it asynchronous and waits till the promises get verified as fetch is a promise based browser in built API
+// Pushing the items into the localStorage of the browser with setItem or getting items if already exists in the local storage
 
+async function returndates(start, end) {
+    if (localStorage.getItem('recentDates') !== $('#datepicker').val()) {
+        const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
+        let dataList = [];
+        let current = moment(start)
+        let finalDay = moment(end)
+        for (let index = current; index.isSameOrBefore(finalDay, 'day'); index.add(1, 'day')) {
+            let response = await fetch(api_link + index.format('YYYY-MM-DD'))
+            let data = await response.json()
+            dataList.push(data)
+        } // end of main for loop 
+        localStorage.setItem('recentDates', $('#datepicker').val());
+
+        dataList.forEach(function(day) {
+                nasaDays.push(new Day(day));
+            })
+            // calling our startUp function to populate the dropdown instantly 
+        startUp();
+    }
+} // End of the async returndates Function for calling the API of APOD
+
+
+
+
+
+
+/*
 async function returndates(start, end) {
     const api_link = "https://api.nasa.gov/planetary/apod?api_key=tahQITZb6AOsbD2e9F8S3BC82ULVNCZ7Mg0scUhU&date=";
     let dataList = [];
@@ -93,19 +121,6 @@ async function returndates(start, end) {
         let response = await fetch(api_link + index.format('YYYY-MM-DD'))
         let data = await response.json()
         dataList.push(data)
-
-        for (let j = 0; j < dataList.length; j++) {
-            let dataListDate = dataList[j].date;
-
-            if (dataListDate != data) {
-                localStorage.setItem('recentDates', JSON.stringify(dataListDate));
-            } else {
-                localStorage.getItem('recentDates', JSON.parse(dataListDate));
-            }
-
-
-
-        } // inner loop
 
     } // end of main for loop 
     console.log(dataList);
@@ -118,56 +133,18 @@ async function returndates(start, end) {
     console.log(nasaDays);
 
 
-    /*
-    for (var j = 0; j < dataList.length; j++) {
-        var dataListDate = dataList[j].date;
-
-        if (dataListDate != data) {
-            localStorage.setItem('recentSearches', JSON.stringify(dataListDate));
-        } else {
-            localStorage.getItem('recentSearches', JSON.parse(dataListDate));
-        }
+    localStorage.setItem('recentDates', $('#datepicker').val());
 
 
-
-    }
-    */
-
-    /*
-
-        for (var i = 0; i < nasaDays.length; i++) {
-            var nasaDate = nasaDays[i].data.date;
-            for (var j = 0; j < dataList.length; j++) {
-                var dataListDate = dataList[j].date;
-
-                if (dataListDate != nasaDate) {
-                    localStorage.setItem('recentSearches', JSON.stringify(dataListDate));
-                } else {
-                    localStorage.getItem('recentSearches', JSON.parse(dataListDate));
-                }
-
-
-
-            }
-        }
-        */
-    /*
-
-    if (dataList.value != current && dataList.value != finalDay) {
-        localStorage.setItem('recentSearches', JSON.stringify(dataList));
-    } else {
-        localStorage.getItem('recentSearches', JSON.parse(dataList));
-    }
-*/
 
 } // End of the async returndates Function for calling the API of APOD
 
-
+*/
 
 
 
 // To store arrays or objects, you would have to convert them to strings with stringify
-// Pushing the items into the localStorage of the browser with setItem 
+
 let datepicker = document.getElementById('datepicker').value;
 
 
