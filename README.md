@@ -1,4 +1,5 @@
 Project using Nasa's A.P.O.D API README:
+
 1) When you open up the date picker on the right side, after selecting the date range let's say 1 to 5, click apply always. And then on the left
 side if you click, get Data button, it will populate the dropdown and you can see the list of titles in the dropdown list. There will be validations in the
 date picker as well, further date than today and more than 30 days cannot be selected.  
@@ -31,3 +32,5 @@ also converted it into async await function which leads into lesser code.
 I think it looks better with these stars anmation and there's a regulation for the speed of the stars down on the right side which is fixed in CSS
 
 9) I kept some of my old commented not active code as I like to look back and remember What I did and what I have changed
+
+10) I used 'DD/MM/YYYY' in the Datepicker as written in the Project Details and 'YYYY-MM-DD' format in the query Details for API as stated in the outline 
