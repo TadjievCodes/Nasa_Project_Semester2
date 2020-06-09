@@ -1,9 +1,9 @@
 Project using Nasa's A.P.O.D API README:
 
 1) When you open up the date picker on the right side, after selecting the date range let's say 1 to 5, click apply always. And then on the left
-side if you click, get Data button, it will populate the dropdown and you can see the list of titles in the dropdown list. There will be validations in the
+side, it will populate the dropdown and you can see the list of titles in the dropdown list. There will be validations in the
 date picker as well, further date than today and more than 30 days cannot be selected.  
-The dropdown might take time to be filled if you select more than 2 or 3 days. Please wait and click the button as it's coming from Nasa's API and especially it's also loading and adding heavy videos that are coming from youtube or vimeo. If you click immediately and nothing comes up just click again and the dropdown should be filled accordingly.  
+The dropdown might take time to be filled if you select more than 2 or 3 days. Please wait as it's coming from Nasa's API and especially it's also loading and adding heavy videos that are coming from youtube or vimeo. If you click immediately and nothing comes up just click again and the dropdown should be filled accordingly.  
 
 2) /*
  There's internal server error for June 4 so don't count it as a mistake . I have checked the URL so that's an error from NASA
@@ -33,4 +33,7 @@ I think it looks better with these stars anmation and there's a regulation for t
 
 9) I kept some of my old commented not active code as I like to look back and remember What I did and what I have changed
 
-10) I used 'DD/MM/YYYY' in the Datepicker as written in the Project Details and 'YYYY-MM-DD' format in the query Details for API as stated in the outline 
+10) I used 'DD/MM/YYYY' in the Datepicker as written in the Project Details and 'YYYY-MM-DD' format in the query Details for API as stated in the outline  
+
+11) Task 6 of the Project was implemeted within the returndates async function where it checks to store into the localStorage with setItem if it doesn't
+exist in the localStorage already so that there won't be a double call of the Fetch API if the data already exists
