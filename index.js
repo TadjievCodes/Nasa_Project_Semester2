@@ -14,8 +14,6 @@ const res_btns = document.getElementsByName('res')
 // Our Global Array to store returned data from Asynchronous calls made
 var nasaDays = [];
 
-// Setting the max date as today's date in our Calendar
-//calendar.setAttribute('max', today_date());
 
 // First used this to get today's date but then just thought to use Date.now
 /*
@@ -38,7 +36,6 @@ function today_date() {
     return `${year}-${month}-${day}`
 }
 
-console.log(min_date);
 */
 
 
@@ -52,6 +49,7 @@ console.log(min_date);
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified lesser, cleaner code
 // Also async await makes it asynchronous and waits till the promises get verified as fetch is a promise based browser in built API
 // Pushing the items into the localStorage of the browser with setItem or getting items if already exists in the local storage
+
 
 async function returndates(start, end) {
     if (localStorage.getItem('recentDates') !== $('#datepicker').val()) {
@@ -69,9 +67,11 @@ async function returndates(start, end) {
         dataList.forEach(function(day) {
             nasaDays.push(new Day(day));
         })
+
+        startUp();
         console.log(nasaDays);
         // calling our startUp function to populate the dropdown instantly 
-        startUp();
+
     }
 } // End of the async returndates Function for calling the API of APOD
 
