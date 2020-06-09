@@ -62,6 +62,7 @@ async function returndates(start, end) {
             let data = await response.json()
             dataList.push(data)
         } // end of main for loop 
+
         localStorage.setItem('recentDates', $('#datepicker').val());
 
         dataList.forEach(function(day) {
@@ -72,7 +73,7 @@ async function returndates(start, end) {
         console.log(nasaDays);
         // calling our startUp function to populate the dropdown instantly 
 
-    }
+    } // if end
 } // End of the async returndates Function for calling the API of APOD
 
 
