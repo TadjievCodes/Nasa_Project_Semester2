@@ -135,6 +135,8 @@ iframe {
     border: 2px var(--blue) solid;
 }
 
+
+/*
 #go,
 #today_btn {
     color: #fff;
@@ -162,6 +164,8 @@ iframe {
     -o-border-radius: 1em;
 }
 
+
+
 #go:link,
 #today_btn:link {
     color: #ffa949;
@@ -174,6 +178,7 @@ iframe {
     color: blue;
     background: purple;
 }
+*/
 
 #stand,
 #HD {
