@@ -3,7 +3,7 @@ Project using Nasa's A.P.O.D API README:
 1) When you open up the date picker on the right side, after selecting the date range let's say 1 to 5, click apply always. And then on the left
 side if you click, get Data button, it will populate the dropdown and you can see the list of titles in the dropdown list. There will be validations in the
 date picker as well, further date than today and more than 30 days cannot be selected.  
-The dropdown might take time to be filled if you select more than 2 or 3 days. Please wait and click the button as it's coming from Nasa's API. If you click immediately and nothing comes up just click again and the dropdown should be filled accordingly.  
+The dropdown might take time to be filled if you select more than 2 or 3 days. Please wait and click the button as it's coming from Nasa's API and especially it's also loading and adding heavy videos that are coming from youtube or vimeo. If you click immediately and nothing comes up just click again and the dropdown should be filled accordingly.  
 
 2) /*
  There's internal server error for June 4 so don't count it as a mistake . I have checked the URL so that's an error from NASA
