@@ -49,7 +49,7 @@ function today_date() {
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified lesser, cleaner code
 // Also async await makes it asynchronous and waits till the promises get verified as fetch is a promise based browser in built API
 // Pushing the items into the localStorage of the browser with setItem or getting items if already exists in the local storage
-
+// ALso, it wont make another Fetch call if data exists in Local Storage
 
 async function returndates(start, end) {
     if (localStorage.getItem('recentDates') !== $('#datepicker').val()) {
