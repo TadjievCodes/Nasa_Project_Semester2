@@ -48,34 +48,6 @@ console.log(min_date);
 
 
 
-
-
-// Click event for our clear Storage button which shows today's data
-
-/*
-clear_btn.addEventListener('click', function(event) {
-
-    // Removes the button with this one line after each execution if needed
-    //event.target.remove();
-    //let date_val = calendar.value; // store the value of the calendar in date val first
-    //let actual_date = new Date(date_val); // convert the same string to Date Object
-
-    // Trying code if already data exists don't send another AJAX request and clear the Storage if button clicked
-
-
-
-
-
-
-
-
-}); // closing bracket for callback function with event listener
-*/
-
-
-
-
-
 // Any time the call stack is empty, the event loop engine of JS pushes the first task from the callback queue onto the call stack and runs it.
 // The Fetch API that I used here is a modern replacement for XMLHttpRequest which avoides callback function hell and kinda simplified lesser, cleaner code
 // Also async await makes it asynchronous and waits till the promises get verified as fetch is a promise based browser in built API
@@ -105,19 +77,6 @@ async function returndates(start, end) {
 
 
 
-// Maybe create setInterval for this async function and clear button
-
-
-
-// To call the event listener if any data loads
-window.addEventListener('storage', event => {
-    console.log(event)
-})
-
-// Another way of doing the same thing
-//window.onstorage = () => {};
-
-
 
 
 
@@ -133,11 +92,8 @@ window.addEventListener('storage', event => {
 
 
 
-
-
-
 // defining our dom targeted element so we can target it in startup arrow function
-var select = document.getElementById("displayFilter");
+let select = document.getElementById("displayFilter");
 
 nasaDays = [];
 
@@ -196,3 +152,29 @@ let selecting = () => {
 
 
 // End of the Project
+
+
+/*
+// To call the event listener if any data loads
+window.addEventListener('storage', event => {
+    console.log(event)
+})
+*/
+// Another way of doing the same thing
+//window.onstorage = () => {};
+
+// First thought to have this clear storage button then changed my mind but it can be activated if to open up hTML and this JS code
+/*
+// Clear out searches
+function removeSearches() {
+    localStorage.removeItem('recentDates');
+}
+
+let clearButton = document.getElementById('today_btn');
+
+
+clearButton.addEventListener('click', function(event) {
+    removeSearches();
+});
+
+*/
