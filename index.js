@@ -105,6 +105,7 @@ let startUp = () => {
         // Clears the dropdown list if other items were added in case, so that it won't repeat the titles of the items
         select.innerHTML = "";
 
+
         for (var i = 0; i < nasaDays.length; i++) {
             var optn = nasaDays[i].data.title;
 
