@@ -81,15 +81,7 @@ async function returndates(start, end) {
 
 
 
-/*
- There's internal server eroor for June 4 so don't count it as a mistake 
- {
-"code": 500,
-"msg": "Internal Service Error",
-"service_version": "v1"
-}
 
- */
 
 
 
