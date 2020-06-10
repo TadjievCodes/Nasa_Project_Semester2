@@ -36,4 +36,7 @@ I think it looks better with these stars anmation and there's a regulation for t
 10) I used 'DD/MM/YYYY' in the Datepicker as written in the Project Details and 'YYYY-MM-DD' format in the query Details for API as stated in the outline  
 
 11) Task 6 of the Project was implemeted within the returndates async function where it checks to store into the localStorage with setItem if it doesn't
-exist in the localStorage already so that there won't be a double call of the Fetch API if the data already exists
+exist in the localStorage already so that there won't be a double call of the Fetch API if the data already exists  
+
+12) Also if you click on the image, It will show it to you as a pop up view seperately which looks kinda cool, plus if you click outside of the image
+area, it returns to its condition
