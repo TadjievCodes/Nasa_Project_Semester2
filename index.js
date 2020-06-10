@@ -102,8 +102,12 @@ nasaDays = [];
 // Main arrow function to fill the Select Dropdown List with our nasaDays array values accordingly
 let startUp = () => {
 
+        // Clears the dropdown list if other items were added in case, so that it won't repeat the titles of the items
+        select.innerHTML = "";
+
         for (var i = 0; i < nasaDays.length; i++) {
             var optn = nasaDays[i].data.title;
+
             if (optn && optn != "") { // validating in case if there's empty data it won't go inside the dropdown list
                 //var optn = nasaDays[i].data.title;
                 var el = document.createElement("option");
