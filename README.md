@@ -7,7 +7,8 @@ The dropdown might take time to be filled if you select more than 2 or 3 days. P
 *** It's better to update the page before selecting any other dates so it's going to be a fresh run but even if you select other dates, it will
 still populate the dropdown with the new dates when you click apply again
 
-2) /*
+2) Funny part, When I checked again the JUNE 4 is working and displaying the day, so it was a momentary error from the API at that time I assume
+/*
  There's internal server error for June 4 so don't count it as a mistake . I have checked the URL so that's an error from NASA
  {
 "code": 500,
